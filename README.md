@@ -1,4 +1,4 @@
-_Highly_ WIP Python bindings for (ImTui)[https://github.com/ggerganov/imtui] based on (deargui)[https://github.com/cammm/deargui].
+_Highly_ WIP Python bindings for [ImTui](https://github.com/ggerganov/imtui) based on [deargui](https://github.com/cammm/deargui).
 
 ## Build
 
@@ -24,6 +24,6 @@ If all has gone well, you should see a window with an exit button.
 
 ## Credits
 
-* (ImTui)[https://github.com/ggerganov/imtui] : TUI backend for Dear ImGui.
-* (deargui)[https://github.com/cammm/deargui] : Pybind11 bindings Dear for ImGui.
-* (Dear ImGui)[https://github.com/ocornut/imgui] : Immediate mode GUI library.
+* [ImTui](https://github.com/ggerganov/imtui) : TUI backend for Dear ImGui.
+* [deargui](https://github.com/cammm/deargui) : Pybind11 bindings Dear for ImGui.
+* [Dear ImGui](https://github.com/ocornut/imgui) : Immediate mode GUI library.
