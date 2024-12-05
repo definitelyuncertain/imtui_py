@@ -1,0 +1,6 @@
+[submodule "external/imtui"]
+	path = external/imtui
+	url = https://github.com/ggerganov/imtui
+[submodule "external/pybind11"]
+	path = external/pybind11
+	url = https://github.com/pybind/pybind11
