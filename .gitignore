@@ -2,3 +2,6 @@ build/
 *.pyc
 __pycache__
 compile_commands.json
+.cache
+show_demo.py
+imgui.ini

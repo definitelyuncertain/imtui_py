@@ -5,7 +5,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/functional.h>
 #include <pybind11/stl.h>
-#include <limits>
 #include "imgui.h"
 #include "imgui_internal.h"
 
@@ -62,7 +61,7 @@ void imtui_cleanup(){
     ImTui_ImplNcurses_Shutdown();
 }
 
-PYBIND11_MODULE(imtui_py, m) {
+PYBIND11_MODULE(_imtui_py, m) {
     m.def("imtui_init", &imtui_init, "Initialize ImGui context and ImTui screen");
     m.def("imtui_start_new_frame", &imtui_start_new_frame, "Call at start of main loop");
     m.def("imtui_finish_frame", &imtui_finish_frame, "Call at end of main loop");
@@ -1503,6 +1502,34 @@ PYBIND11_MODULE(imtui_py, m) {
     }
     , py::arg("out_ini_size") = 0
     , py::return_value_policy::automatic_reference);
+
+    // Begin new
+
+    // Tables
+    m.def("begin_table", &ImGui::BeginTable
+    , py::arg("str_id")
+    , py::arg("column")
+    , py::arg("flags") = 0
+    , py::arg("outer_size") = Vec2(0, 0)
+    , py::arg("inner_width") = 0.0
+    , py::return_value_policy::automatic_reference
+    );
+    m.def("end_table", &ImGui::EndTable
+    , py::return_value_policy::automatic_reference
+    );
+    m.def("table_next_column", &ImGui::TableNextColumn
+    , py::return_value_policy::automatic_reference
+    );
+    m.def("table_next_row", &ImGui::TableNextRow
+    , py::return_value_policy::automatic_reference
+    );
+    m.def("table_set_column_index", &ImGui::TableSetColumnIndex
+    , py::arg("column")
+    , py::return_value_policy::automatic_reference
+    );
+
+    // End new
+
     py::enum_<ImGuiWindowFlags_>(m, "WindowFlags", py::arithmetic())
         .value("WINDOW_FLAGS_NONE", ImGuiWindowFlags_None)
         .value("WINDOW_FLAGS_NO_TITLE_BAR", ImGuiWindowFlags_NoTitleBar)
@@ -2747,6 +2774,21 @@ PYBIND11_MODULE(imtui_py, m) {
     , py::arg("items")
     , py::arg("height_in_items") = -1
     , py::return_value_policy::automatic_reference);
+
+    // Begin New
+    m.def("begin_list_box", [](const char* label, const ImVec2 &size){
+        return ImGui::BeginListBox(label, size);
+    }
+    , py::arg("label")
+    , py::arg("size") = ImVec2(0,0)
+    , py::return_value_policy::automatic_reference
+    );
+
+    m.def("end_list_box", &ImGui::EndListBox
+    , py::return_value_policy::automatic_reference
+    );
+    // End new
+
     m.def("plot_lines", [](const char* label, std::vector<float> values, int values_offset, const char* overlay_text, float scale_min, float scale_max, ImVec2 graph_size)
     {
         ImGui::PlotLines(label, values.data(), values.size(), values_offset, overlay_text, scale_min, scale_max, graph_size, sizeof(float));

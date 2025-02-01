@@ -17,7 +17,7 @@ add_subdirectory(external/pybind11)
 set(DEFAULT_LINK_LIBS imtui imtui-ncurses)
 
 # Python interface
-pybind11_add_module(imtui_py pyiface.cpp)
-target_link_libraries(imtui_py PRIVATE ${DEFAULT_LINK_LIBS})
+pybind11_add_module(_imtui_py pyiface.cpp)
+target_link_libraries(_imtui_py PRIVATE ${DEFAULT_LINK_LIBS})
 # The deargui derived bits need direct access to ImGui headers
-target_include_directories(imtui_py PRIVATE ${IMTUI_PATH}/third-party/imgui/imgui)
+target_include_directories(_imtui_py PRIVATE ${IMTUI_PATH}/third-party/imgui/imgui)
